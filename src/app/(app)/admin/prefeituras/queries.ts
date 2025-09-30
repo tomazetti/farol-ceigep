@@ -18,7 +18,7 @@ export async function getUfs() {
   }
 
   // Remover duplicados
-  const ufs = data.reduce((acc: { uf_sigla: string; uf_nome: string }[], current) => {
+  const ufs = data.reduce((acc: { uf_sigla: string | null; uf_nome: string }[], current) => {
     if (!acc.find((item) => item.uf_sigla === current.uf_sigla)) {
       acc.push(current)
     }
