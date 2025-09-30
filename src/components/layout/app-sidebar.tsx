@@ -1,6 +1,6 @@
 import { AppSidebarNav, type NavLink } from "./app-sidebar-nav";
 
-const allLinks: Omit<NavLink, 'icon'> & { iconName: string }[] = [
+const allLinks: NavLink[] = [
   {
     href: "/painel",
     label: "Painel",

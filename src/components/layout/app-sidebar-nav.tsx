@@ -17,12 +17,11 @@ const iconMap: { [key: string]: LucideIcon } = {
 export type NavLink = {
   href: string;
   label: string;
-  iconName: string;
   roles: string[];
 };
 
 interface AppSidebarNavProps {
-  links: Omit<NavLink, 'roles'>[];
+  links: (Omit<NavLink, 'roles'> & { iconName: string })[];
 }
 
 export function AppSidebarNav({ links }: AppSidebarNavProps) {
