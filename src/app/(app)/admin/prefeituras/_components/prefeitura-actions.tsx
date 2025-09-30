@@ -29,7 +29,7 @@ type Prefeitura = {
   created_at: string
   municipios: {
     nome: string
-    uf_sigla: string
+    uf_sigla: string | null
   } | null
 }
 
