@@ -122,8 +122,8 @@ export function PrefeituraForm({ onSubmit, defaultValues }: PrefeituraFormProps)
                 </SelectTrigger>
               </FormControl>
               <SelectContent>
-                {ufs.map((uf) => (
-                  <SelectItem key={uf.uf_sigla} value={uf.uf_sigla}>
+                {ufs.filter(uf => uf.uf_sigla).map((uf) => (
+                  <SelectItem key={uf.uf_sigla} value={uf.uf_sigla!}>
                     {uf.uf_sigla}
                   </SelectItem>
                 ))}
