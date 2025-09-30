@@ -105,6 +105,7 @@ export default function SignupPage() {
                   <MaskedInput
                     mask="000.000.000-00"
                     value={cpf}
+                    // eslint-disable-next-line @typescript-eslint/no-explicit-any
                     onAccept={(value: any) => setCpf(String(value))}
                     onBlur={handleCpfBlur}
                     id="cpf"
