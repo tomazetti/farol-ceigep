@@ -36,7 +36,7 @@ interface PrefeituraFormProps {
 }
 
 type Uf = {
-  uf_sigla: string
+  uf_sigla: string | null
   uf_nome: string
 }
 
