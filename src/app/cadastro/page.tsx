@@ -105,7 +105,7 @@ export default function SignupPage() {
                   <MaskedInput
                     mask="000.000.000-00"
                     value={cpf}
-                    onAccept={(value) => setCpf(String(value))}
+                    onAccept={(value: any) => setCpf(String(value))}
                     onBlur={handleCpfBlur}
                     id="cpf"
                     name="cpf"
