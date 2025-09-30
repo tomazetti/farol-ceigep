@@ -33,13 +33,12 @@ type PrefeituraData = Awaited<ReturnType<typeof getPrefeituraById>>
 type SecretariasData = Awaited<ReturnType<typeof getSecretariasByPrefeituraId>>
 
 interface PrefeituraPageProps {
-  params: {
-    id: string
-  }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  params: any
 }
 
 export default function PrefeituraPage({ params: paramsProp }: PrefeituraPageProps) {
-  const params = use(paramsProp)
+  const params = use(paramsProp) as { id: string }
   const { id } = params
 
   const [prefeitura, setPrefeitura] = useState<PrefeituraData>(null)
