@@ -2,10 +2,9 @@
 
 import * as React from 'react';
 import { IMaskMixin } from 'react-imask';
-import { type InputProps } from '@/components/ui/input';
 import { Input } from '@/components/ui/input';
 
-const MaskedInput = IMaskMixin(({ inputRef, ...props }: { inputRef: React.Ref<HTMLInputElement> } & InputProps) => (
+const MaskedInput = IMaskMixin(({ inputRef, ...props }: { inputRef: React.Ref<HTMLInputElement> } & React.ComponentProps<'input'>) => (
   <Input
     {...props}
     ref={inputRef}
