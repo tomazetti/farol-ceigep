@@ -1,0 +1,393 @@
+No console: 
+
+layout.tsx:12  Server  --- AppLayout: Iniciando renderização ---
+layout.tsx:12  Server  --- AppLayout: Iniciando renderização ---
+layout.tsx:21  Server  AppLayout: Resultado de getUser() -> {user: {…}, userError: null}
+layout.tsx:28  Server  AppLayout: Buscando perfil para user ID: eccabb71-1def-4026-830f-4c57afae68b6
+layout.tsx:35  Server  AppLayout: Resultado da busca de perfil -> {userProfile: null, profileError: {…}}
+layout.tsx:38  Server  AppLayout: Perfil não encontrado, redirecionando para /login com mensagem.
+layout.tsx:21  Server  AppLayout: Resultado de getUser() -> {user: {…}, userError: null}
+layout.tsx:28  Server  AppLayout: Buscando perfil para user ID: eccabb71-1def-4026-830f-4c57afae68b6
+layout.tsx:35  Server  AppLayout: Resultado da busca de perfil -> {userProfile: null, profileError: {…}}
+layout.tsx:38  Server  AppLayout: Perfil não encontrado, redirecionando para /login com mensagem.
+
+
+No terminal: 
+
+--- Login Action: Iniciando ---
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.0')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.1')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.2')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.0')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.3')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.1')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.4')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.2')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.3')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.4')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+    at async login (src/app/login/actions.ts:19:27)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.0')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+    at async login (src/app/login/actions.ts:19:27)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.1')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+    at async login (src/app/login/actions.ts:19:27)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.2')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+    at async login (src/app/login/actions.ts:19:27)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.3')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+    at async login (src/app/login/actions.ts:19:27)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token.4')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+    at async login (src/app/login/actions.ts:19:27)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Error: Route "/login" used `cookies().set('sb-wyduxjwvopmvrovvwffo-auth-token', ...)`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.set (../../../src/server/request/cookies.ts:379:9)
+    at Object.set (src/lib/supabase/utils.ts:15:25)
+    at async login (src/app/login/actions.ts:19:27)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Login Action: Resultado de signInWithPassword -> {
+  data: {
+    user: {
+      id: 'eccabb71-1def-4026-830f-4c57afae68b6',
+      aud: 'authenticated',
+      role: 'authenticated',
+      email: 'andre@tomazetti.com.br',
+      email_confirmed_at: '2025-09-30T19:39:01.571243Z',
+      phone: '',
+      confirmation_sent_at: '2025-09-30T19:38:07.407573Z',
+      confirmed_at: '2025-09-30T19:39:01.571243Z',
+      last_sign_in_at: '2025-09-30T20:22:57.150133695Z',
+      app_metadata: [Object],
+      user_metadata: [Object],
+      identities: [Array],
+      created_at: '2025-09-30T19:38:07.398246Z',
+      updated_at: '2025-09-30T20:22:57.154202Z',
+      is_anonymous: false
+    },
+    session: {
+      access_token: 'eyJhbGciOiJIUzI1NiIsImtpZCI6IkNPWkcya1NnQ3dKQjhlYnAiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3d5ZHV4and2b3BtdnJvdnZ3ZmZvLnN1cGFiYXNlLmNvL2F1dGgvdjEiLCJzdWIiOiJlY2NhYmI3MS0xZGVmLTQwMjYtODMwZi00YzU3YWZhZTY4YjYiLCJhdWQiOiJhdXRoZW50aWNhdGVkIiwiZXhwIjoxNzU5MjY3Mzc3LCJpYXQiOjE3NTkyNjM3NzcsImVtYWlsIjoiYW5kcmVAdG9tYXpldHRpLmNvbS5iciIsInBob25lIjoiIiwiYXBwX21ldGFkYXRhIjp7InByb3ZpZGVyIjoiZW1haWwiLCJwcm92aWRlcnMiOlsiZW1haWwiXX0sInVzZXJfbWV0YWRhdGEiOnsiZW1haWwiOiJhbmRyZUB0b21hemV0dGkuY29tLmJyIiwiZW1haWxfdmVyaWZpZWQiOnRydWUsImZ1bGxfbmFtZSI6IkFuZHJlIEx1aXogRGlhcyBUb21hemV0dGkiLCJwaG9uZV92ZXJpZmllZCI6ZmFsc2UsInN1YiI6ImVjY2FiYjcxLTFkZWYtNDAyNi04MzBmLTRjNTdhZmFlNjhiNiJ9LCJyb2xlIjoiYXV0aGVudGljYXRlZCIsImFhbCI6ImFhbDEiLCJhbXIiOlt7Im1ldGhvZCI6InBhc3N3b3JkIiwidGltZXN0YW1wIjoxNzU5MjYzNzc3fV0sInNlc3Npb25faWQiOiJkZjZhZGRhZi03ZmYyLTQ4NzgtYTJlYy02OTAzMGMzMWNlNTYiLCJpc19hbm9ueW1vdXMiOmZhbHNlfQ.KpofB917l3apYmGxegockcfA73jexuYyh-hVY6QanMM',
+      token_type: 'bearer',
+      expires_in: 3600,
+      expires_at: 1759267377,
+      refresh_token: 'zbne2ixowyds',
+      user: [Object],
+      weak_password: null
+    }
+  },
+  error: null
+}
+Login Action: Login bem-sucedido, revalidando /painel.
+ POST /login?message=Perfil%20n%C3%A3o%20encontrado. 200 in 8259ms
+ ○ Compiling /painel ...
+ ✓ Compiled /painel in 879ms (1032 modules)
+--- AppLayout: Iniciando renderização ---
+Error: Route "/painel" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+--- AppLayout: Iniciando renderização ---
+Error: Route "/painel" used `cookies().get('sb-wyduxjwvopmvrovvwffo-auth-token')`. `cookies()` should be awaited before using its value. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+    at createCookiesAccessError (../../../src/server/request/cookies.ts:529:10)
+    at syncIODev (../../../src/server/request/cookies.ts:517:3)
+    at Promise.get (../../../src/server/request/cookies.ts:332:9)
+    at Object.get (src/lib/supabase/utils.ts:11:30)
+  527 | ) {
+  528 |   const prefix = route ? `Route "${route}" ` : 'This route '
+> 529 |   return new Error(
+      |          ^
+  530 |     `${prefix}used ${expression}. ` +
+  531 |       `\`cookies()\` should be awaited before using its value. ` +
+  532 |       `Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis`
+Using the user object as returned from supabase.auth.getSession() or from some supabase.auth.onAuthStateChange() events could be insecure! This value comes directly from the storage medium (usually cookies on the server) and may not be authentic. Use supabase.auth.getUser() instead which authenticates the data by contacting the Supabase Auth server.
+AppLayout: Resultado de getUser() -> {
+  user: {
+    id: 'eccabb71-1def-4026-830f-4c57afae68b6',
+    aud: 'authenticated',
+    role: 'authenticated',
+    email: 'andre@tomazetti.com.br',
+    email_confirmed_at: '2025-09-30T19:39:01.571243Z',
+    phone: '',
+    confirmation_sent_at: '2025-09-30T19:38:07.407573Z',
+    confirmed_at: '2025-09-30T19:39:01.571243Z',
+    last_sign_in_at: '2025-09-30T20:22:57.150133Z',
+    app_metadata: { provider: 'email', providers: [Array] },
+    user_metadata: {
+      email: 'andre@tomazetti.com.br',
+      email_verified: true,
+      full_name: 'Andre Luiz Dias Tomazetti',
+      phone_verified: false,
+      sub: 'eccabb71-1def-4026-830f-4c57afae68b6'
+    },
+    identities: [ [Object] ],
+    created_at: '2025-09-30T19:38:07.398246Z',
+    updated_at: '2025-09-30T20:22:57.154202Z',
+    is_anonymous: false
+  },
+  userError: null
+}
+AppLayout: Buscando perfil para user ID: eccabb71-1def-4026-830f-4c57afae68b6
+AppLayout: Resultado de getUser() -> {
+  user: {
+    id: 'eccabb71-1def-4026-830f-4c57afae68b6',
+    aud: 'authenticated',
+    role: 'authenticated',
+    email: 'andre@tomazetti.com.br',
+    email_confirmed_at: '2025-09-30T19:39:01.571243Z',
+    phone: '',
+    confirmation_sent_at: '2025-09-30T19:38:07.407573Z',
+    confirmed_at: '2025-09-30T19:39:01.571243Z',
+    last_sign_in_at: '2025-09-30T20:22:57.150133Z',
+    app_metadata: { provider: 'email', providers: [Array] },
+    user_metadata: {
+      email: 'andre@tomazetti.com.br',
+      email_verified: true,
+      full_name: 'Andre Luiz Dias Tomazetti',
+      phone_verified: false,
+      sub: 'eccabb71-1def-4026-830f-4c57afae68b6'
+    },
+    identities: [ [Object] ],
+    created_at: '2025-09-30T19:38:07.398246Z',
+    updated_at: '2025-09-30T20:22:57.154202Z',
+    is_anonymous: false
+  },
+  userError: null
+}
+AppLayout: Buscando perfil para user ID: eccabb71-1def-4026-830f-4c57afae68b6
+AppLayout: Resultado da busca de perfil -> {
+  userProfile: null,
+  profileError: {
+    code: 'PGRST116',
+    details: 'The result contains 0 rows',
+    hint: null,
+    message: 'Cannot coerce the result to a single JSON object'
+  }
+}
+AppLayout: Perfil não encontrado, redirecionando para /login com mensagem.
+AppLayout: Resultado da busca de perfil -> {
+  userProfile: null,
+  profileError: {
+    code: 'PGRST116',
+    details: 'The result contains 0 rows',
+    hint: null,
+    message: 'Cannot coerce the result to a single JSON object'
+  }
+}
+AppLayout: Perfil não encontrado, redirecionando para /login com mensagem.
+ GET /painel 200 in 3931ms
+ GET /painel 200 in 1885ms
+ GET /login?message=Perfil+n%C3%A3o+encontrado. 200 in 301ms
+ GET /login?message=Perfil+n%C3%A3o+encontrado. 200 in 305ms

@@ -550,3 +550,195 @@ using (
   globals.css (tokens brand)
 /server (se usar route handlers/edge functions)
 ```
+
+---
+
+# Guia de Design da Aplicação (CEIGEP Brand Kit)
+
+## Fundamentos de marca
+
+* **Princípio orientador:** simplicidade, precisão e consciência — traduza isso em interface limpa, poucos elementos na tela e foco no essencial. 
+* **Paleta oficial (hex):**
+
+  * Cinza-escuro **#2A2B2D** (conteúdo primário, títulos, ícones “on dark”)
+  * Cinza **#4E555E** (texto primário em fundo claro)
+  * Cinza-médio **#80858B** (texto secundário/legendas)
+  * Bege 1 **#D1BAA6** e Bege 2 **#B9ADA2** (acentos discretos/realces)
+  * Azul-claro **#CDD6DF** (feedback informativo/superfícies suaves)
+    A paleta comunica estabilidade (cinzas), humanidade (beges) e transparência/serenidade (azul-claro).  
+* **Tipografia:** **Raleway** (Regular/Bold/Light). Traço limpo e minimalista para clareza e seriedade. Use Raleway Regular para textos, Bold para títulos/ênfases, Light com parcimônia em displays. 
+* **Imagens:** simples, autênticas e humanas; tons claros, composições limpas, foco em pessoas; evite poluição visual. 
+
+---
+
+## Mobile-first primeiro
+
+* **Breakpoints sugeridos:**
+
+  * base: 0–639px, **sm: 640** | **md: 768** | **lg: 1024** | **xl: 1280**.
+    Comece desenhando para base; só adicione colunas/complexidade nos próximos degraus.
+* **Layout base no mobile:** barra superior fixa (título curto + ação principal), conteúdo em **uma coluna**, navegação por **tabs** ou **drawer**; evite barras inferiores lotadas.
+* **Gestos:** swipe para fechar modais/drawers; drag-and-drop apenas no Kanban (com zonas de drop grandes).
+
+---
+
+## Sistema de design (tokens + regras)
+
+### Cores (tokens)
+
+```css
+:root{
+  --fg-strong:#2A2B2D;   /* títulos/ícones */
+  --fg:#4E555E;          /* texto principal */
+  --fg-muted:#80858B;    /* secundário/legendas */
+  --bg:#FFFFFF;          /* fundo */
+  --surface:#F7F8F9;     /* cards/listas sutis */
+  --accent-1:#D1BAA6;    /* acento suave */
+  --accent-2:#B9ADA2;    /* acento alternativo */
+  --info:#CDD6DF;        /* info/empties */
+  --border:#E6E8EA;      /* linhas divisórias */
+}
+```
+
+**Uso recomendado:**
+
+* Texto primário: `--fg` sobre `--bg`.
+* Títulos/ícones fortes: `--fg-strong`.
+* Borda 1px sólida com `--border` (linhas discretas).
+* **Evite** usar beges como fundo de página; prefira para chips, badges, barras de progresso sutis.
+
+### Tipografia (escala responsiva)
+
+* **Raleway** (system fallback sans-serif). 
+* **Escala (mobile → desktop):**
+
+  * h1: 22/28 → 28/34, **700**
+  * h2: 18/24 → 22/28, **700**
+  * h3: 16/22 → 18/24, **600/700**
+  * body: 15/22 → 16/24, **400**
+  * caption: 13/18 → 14/20, **400**
+* **Regras:** máximo de **dois pesos** por tela (ex.: 400/700). Evite ALL CAPS extensivo; prefira **Bold + tracking ligeiro** para seções.
+
+### Grid, espaçamento e densidade
+
+* **Grid de 8px** (multiplicadores: 4/8/12/16/24/32).
+* **Containers:** 16px padding lateral no mobile; 24–32px no desktop.
+* **Alturas de alvo:** toque mínimo **44px** (botões, listas).
+* **Densidade:** priorize respiro; até 8 itens acima da dobra no mobile.
+
+### Ícones e ilustrações
+
+* Ícones lineares (ex.: 24px, stroke 1.5–2px), cor = `--fg-muted` em repouso; `--fg-strong` em foco/ativo.
+* Ilustrações minimalistas com tons da paleta (cinzas/azul-claro) e toque de bege; **nada de saturação alta**. 
+
+### Elevações, raios e motion
+
+* **Raios:** 10–12px (cards, modais).
+* **Sombras** suaves (1–3 níveis):
+
+  * s1: 0 1px 2px rgba(0,0,0,.04)
+  * s2: 0 2px 8px rgba(0,0,0,.06)
+  * s3: 0 8px 24px rgba(0,0,0,.08)
+* **Animações:** 120–180ms, easing suave; **1 propósito por vez** (entradas/expansões). Sem bounce.
+
+---
+
+## Componentes (padrões de UI)
+
+### App Bar
+
+* Altura 56–64px (mobile), fundo `--bg`, título curto (máx. 24 caracteres), ação primária à direita.
+* Divider inferior 1px `--border` quando houver scroll.
+
+### Navegação
+
+* **Mobile:** tabs no topo ou lateral via drawer; **evite** 5+ itens.
+* **Desktop:** sidebar fixa 240px + área de conteúdo fluida.
+
+### Cards e listas
+
+* **Card:** padding 16–20px; título (h3), metadados (fg-muted), ações à direita.
+* **Lista:** linhas 56–64px; **um** ícone à esquerda; texto de apoio de **uma** linha.
+
+### Botões
+
+* **Primário:** fundo `--fg-strong`, texto branco; radius 10px; min-width 96px; altura 44–48px.
+* **Secundário:** borda `--fg-strong` 1px, texto `--fg-strong`, fundo `transparent`.
+* **Terciário/Link:** texto `--fg-strong` sem borda.
+* Estados (hover/focus/disabled) sempre com contraste claro (WCAG AA).
+
+### Formulários
+
+* Campos altura 44px; label sempre visível; help text opcional (fg-muted).
+* Erro em vermelho neutro derivado de `--fg-strong` com **texto claro e curto**.
+* Máscaras de CPF, telefone e CNPJ (onde couber).
+
+### Tarefas & Kanban
+
+* **Colunas:** “A fazer”, “Fazendo”, “Feito” — largura fluida; no mobile, **carrossel horizontal** (1 coluna por vez) + drag-and-drop.
+* **Card de tarefa:**
+
+  * Título (máx. 2 linhas, **Bold**), descrição (1 linha), responsável (avatar + nome curto), badges (secretaria/prefeitura).
+  * Cores de status **não intrusivas**: use `--info` como base de “indicadores” leves; evite semáforos saturados. 
+
+### Tabelas (quando necessárias)
+
+* Só em **md+**; no mobile, **listas**.
+* Colunas essenciais, zebra sutil (`--surface`), header 12–14/700.
+
+### Vazios (empty states)
+
+* Ícone grande em `--info`, 1 frase objetiva e 1 CTA.
+* **Nada de parágrafos longos.**
+
+---
+
+## Acessibilidade & conteúdo
+
+* **Contraste:** texto principal ≥ 4.5:1; textos sobre bege devem usar `--fg-strong`.
+* **Foco visível** (outline 2px) e navegação por teclado estável.
+* **Linguagem:** direta e cidadã; evite jargão. (A estética minimalista reforça clareza e proximidade.) 
+
+---
+
+## Exemplo de “baseline” (Tailwind)
+
+```js
+// tailwind.config.js (trecho)
+theme:{
+  extend:{
+    colors:{
+      fg:{ DEFAULT:'#4E555E', strong:'#2A2B2D', muted:'#80858B'},
+      accent:{ 1:'#D1BAA6', 2:'#B9ADA2'},
+      info:'#CDD6DF',
+      border:'#E6E8EA',
+      surface:'#F7F8F9',
+    },
+    borderRadius:{ md:'10px', lg:'12px' },
+    boxShadow:{
+      s1:'0 1px 2px rgba(0,0,0,.04)',
+      s2:'0 2px 8px rgba(0,0,0,.06)',
+      s3:'0 8px 24px rgba(0,0,0,.08)'
+    },
+    fontFamily:{ sans:['Raleway','ui-sans-serif','system-ui'] }
+  }
+}
+```
+
+---
+
+## Do / Don’t (resumo rápido)
+
+**Faça:** poucas cores na mesma tela; 1–2 pesos tipográficos; grid 8px; respiro generoso; ícones discretos.
+**Evite:** fundos coloridos extensos; sombras pesadas; textos longos em componentes; três ou mais pesos tipográficos; “arco-íris” de status.
+
+---
+
+## Checklist de implementação de UI
+
+* [ ] Paleta e tipografia do Brand Kit aplicadas.  
+* [ ] Mobile-first pronto (uma coluna, toques ≥ 44px).
+* [ ] Contraste e foco AA.
+* [ ] Kanban usável no mobile (scroll horizontal + DnD).
+* [ ] Empty states com `--info` e CTA claro.
+* [ ] Imagens/ilustrações minimalistas e humanas, quando usadas.

@@ -1,0 +1,10 @@
+alter table public.prefeituras enable row level security;
+alter table public.secretarias enable row level security;
+alter table public.usuarios enable row level security;
+alter table public.vinculos_usuarios enable row level security;
+alter table public.consultores_prefeituras enable row level security;
+alter table public.access_grants enable row level security;
+alter table public.tarefas enable row level security;
+alter table public.observadores_tarefa enable row level security;
+alter table public.historico_tarefas enable row level security;
+alter table public.audit_log enable row level security;
