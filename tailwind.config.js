@@ -1,7 +1,7 @@
-import tailwindcssAnimate from "tailwindcss-animate"
+const tailwindcssAnimate = require("tailwindcss-animate")
 
 /** @type {import('tailwindcss').Config} */
-const config = {
+module.exports = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -18,29 +18,15 @@ const config = {
       },
     },
     extend: {
-      fontFamily: {
-        sans: ["var(--font-sans)"],
-      },
       colors: {
-        border: "hsl(var(--border-brand))",
+        border: "hsl(var(--border))",
         input: "hsl(var(--input))",
         ring: "hsl(var(--ring))",
-        background: "hsl(var(--bg))",
+        background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
-        surface: "hsl(var(--surface))",
-        fg: {
-          DEFAULT: "hsl(var(--fg))",
-          strong: "hsl(var(--fg-strong))",
-          muted: "hsl(var(--fg-muted))",
-        },
-        accent: {
-          1: "hsl(var(--accent-1))",
-          2: "hsl(var(--accent-2))",
-        },
-        info: "hsl(var(--info))",
         primary: {
-          DEFAULT: "hsl(var(--fg-strong))",
-          foreground: "hsl(var(--bg))",
+          DEFAULT: "hsl(var(--primary))",
+          foreground: "hsl(var(--primary-foreground))",
         },
         secondary: {
           DEFAULT: "hsl(var(--secondary))",
@@ -54,16 +40,23 @@ const config = {
           DEFAULT: "hsl(var(--muted))",
           foreground: "hsl(var(--muted-foreground))",
         },
+        accent: {
+          DEFAULT: "hsl(var(--accent))",
+          foreground: "hsl(var(--accent-foreground))",
+        },
+        popover: {
+          DEFAULT: "hsl(var(--popover))",
+          foreground: "hsl(var(--popover-foreground))",
+        },
+        card: {
+          DEFAULT: "hsl(var(--card))",
+          foreground: "hsl(var(--card-foreground))",
+        },
       },
       borderRadius: {
-        lg: "12px",
-        md: "10px",
+        lg: "var(--radius)",
+        md: "calc(var(--radius) - 2px)",
         sm: "calc(var(--radius) - 4px)",
-      },
-      boxShadow: {
-        s1: "0 1px 2px rgba(0,0,0,.04)",
-        s2: "0 2px 8px rgba(0,0,0,.06)",
-        s3: "0 8px 24px rgba(0,0,0,.08)",
       },
       keyframes: {
         "accordion-down": {
@@ -83,5 +76,3 @@ const config = {
   },
   plugins: [tailwindcssAnimate],
 }
-
-export default config

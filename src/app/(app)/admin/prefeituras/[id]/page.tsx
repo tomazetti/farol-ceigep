@@ -4,8 +4,12 @@ import { useEffect, useState, useTransition, use } from "react"
 import { notFound } from "next/navigation"
 import { getPrefeituraById } from "../queries"
 import { updatePrefeitura, deletePrefeitura } from "../actions"
-import { getSecretariasByPrefeituraId } from "../../secretarias/queries"
-import { SecretariaActions } from "../../secretarias/_components/secretaria-actions"
+import { getOrgaosByPrefeituraId } from "../../orgaos/queries"
+import { OrgaoActions } from "../../orgaos/_components/orgao-actions"
+import { getUsuariosVinculados, getUsuariosDisponiveis } from "../../vinculos/queries"
+import { VinculoActions } from "../../vinculos/_components/vinculo-actions"
+import { getConsultoresVinculados, getConsultoresDisponiveis } from "../../consultores/queries"
+import { ConsultorPrefeituraActions } from "../../consultores/_components/consultor-prefeitura-actions"
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card"
 import { Button } from "@/components/ui/button"
 import {
@@ -30,10 +34,13 @@ import { FilePenLine, Trash2 } from "lucide-react"
 import { PrefeituraForm } from "../_components/prefeitura-form"
 
 type PrefeituraData = Awaited<ReturnType<typeof getPrefeituraById>>
-type SecretariasData = Awaited<ReturnType<typeof getSecretariasByPrefeituraId>>
+type OrgaosData = Awaited<ReturnType<typeof getOrgaosByPrefeituraId>>
+type UsuariosVinculadosData = Awaited<ReturnType<typeof getUsuariosVinculados>>
+type UsuariosDisponiveisData = Awaited<ReturnType<typeof getUsuariosDisponiveis>>
+type ConsultoresVinculadosData = Awaited<ReturnType<typeof getConsultoresVinculados>>
+type ConsultoresDisponiveisData = Awaited<ReturnType<typeof getConsultoresDisponiveis>>
 
 interface PrefeituraPageProps {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   params: any
 }
 
@@ -42,28 +49,65 @@ export default function PrefeituraPage({ params: paramsProp }: PrefeituraPagePro
   const { id } = params
 
   const [prefeitura, setPrefeitura] = useState<PrefeituraData>(null)
-  const [secretarias, setSecretarias] = useState<SecretariasData>([])
+  const [orgaos, setOrgaos] = useState<OrgaosData>([])
+  const [usuariosVinculados, setUsuariosVinculados] = useState<UsuariosVinculadosData>([])
+  const [usuariosDisponiveis, setUsuariosDisponiveis] = useState<UsuariosDisponiveisData>([])
+  const [consultoresVinculados, setConsultoresVinculados] = useState<ConsultoresVinculadosData>([])
+  const [consultoresDisponiveis, setConsultoresDisponiveis] = useState<ConsultoresDisponiveisData>([])
   const [isLoading, setIsLoading] = useState(true)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
   const [isPending, startTransition] = useTransition()
 
+  const fetchData = async () => {
+    const [
+      orgaosData,
+      usuariosVinculadosData,
+      consultoresVinculadosData,
+      consultoresDisponiveisData,
+    ] = await Promise.all([
+      getOrgaosByPrefeituraId(id),
+      getUsuariosVinculados(id),
+      getConsultoresVinculados(id),
+      getConsultoresDisponiveis(id),
+    ])
+    setOrgaos(orgaosData)
+    setUsuariosVinculados(usuariosVinculadosData)
+    setConsultoresVinculados(consultoresVinculadosData)
+    setConsultoresDisponiveis(consultoresDisponiveisData)
+  }
+
   useEffect(() => {
-    async function fetchData() {
+    async function fetchInitialData() {
       setIsLoading(true)
-      const [prefeituraData, secretariasData] = await Promise.all([
+      const [
+        prefeituraData,
+        orgaosData,
+        usuariosVinculadosData,
+        usuariosDisponiveisData,
+        consultoresVinculadosData,
+        consultoresDisponiveisData,
+      ] = await Promise.all([
         getPrefeituraById(id),
-        getSecretariasByPrefeituraId(id)
+        getOrgaosByPrefeituraId(id),
+        getUsuariosVinculados(id),
+        getUsuariosDisponiveis(),
+        getConsultoresVinculados(id),
+        getConsultoresDisponiveis(id),
       ])
       
       if (!prefeituraData) {
         notFound()
       } else {
         setPrefeitura(prefeituraData)
-        setSecretarias(secretariasData)
+        setOrgaos(orgaosData)
+        setUsuariosVinculados(usuariosVinculadosData)
+        setUsuariosDisponiveis(usuariosDisponiveisData)
+        setConsultoresVinculados(consultoresVinculadosData)
+        setConsultoresDisponiveis(consultoresDisponiveisData)
       }
       setIsLoading(false)
     }
-    fetchData()
+    fetchInitialData()
   }, [id])
 
   const handleUpdateSubmit = async (values: { nome: string; municipio_id: string }) => {
@@ -95,8 +139,8 @@ export default function PrefeituraPage({ params: paramsProp }: PrefeituraPagePro
   }
 
   return (
-    <div className="p-6">
-      <h1 className="text-2xl font-bold text-fg-strong mb-6">
+    <div className="p-6 space-y-6">
+      <h1 className="text-2xl font-bold">
         Detalhes da Prefeitura
       </h1>
       <Card>
@@ -110,7 +154,7 @@ export default function PrefeituraPage({ params: paramsProp }: PrefeituraPagePro
           <p>
             <strong>UF:</strong> {prefeitura.municipios?.uf_sigla || "N/A"}
           </p>
-          <p className="text-sm text-fg-muted pt-4">
+          <p className="text-sm text-muted-foreground pt-4">
             Cadastrada em: {new Date(prefeitura.created_at).toLocaleDateString('pt-BR')}
           </p>
           <div className="flex justify-end space-x-2 pt-6">
@@ -162,7 +206,26 @@ export default function PrefeituraPage({ params: paramsProp }: PrefeituraPagePro
         </CardContent>
       </Card>
 
-      <SecretariaActions prefeituraId={prefeitura.id} secretarias={secretarias} />
+      <OrgaoActions 
+        prefeituraId={prefeitura.id} 
+        orgaos={orgaos}
+        onDataChange={fetchData}
+      />
+
+      <VinculoActions
+        prefeituraId={prefeitura.id}
+        usuariosVinculados={usuariosVinculados}
+        usuariosDisponiveis={usuariosDisponiveis}
+        orgaos={orgaos}
+        onDataChange={fetchData}
+      />
+
+      <ConsultorPrefeituraActions
+        prefeituraId={prefeitura.id}
+        consultoresVinculados={consultoresVinculados}
+        consultoresDisponiveis={consultoresDisponiveis}
+        onDataChange={fetchData}
+      />
     </div>
   )
 }

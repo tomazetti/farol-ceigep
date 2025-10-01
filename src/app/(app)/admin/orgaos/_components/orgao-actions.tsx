@@ -35,104 +35,119 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { PlusCircle, FilePenLine, Trash2 } from "lucide-react"
-import { SecretariaForm } from "./secretaria-form"
-import { addSecretaria, updateSecretaria, deleteSecretaria } from "../actions"
+import { OrgaoForm } from "./orgao-form"
+import { addOrgao, updateOrgao, deleteOrgao } from "../actions"
 
-type Secretaria = {
+type Orgao = {
   id: string
   nome: string
   prefeitura_id: string
   created_at: string
+  orgao_superior_id: string | null
+  orgaos: {
+    nome: string
+  } | null
 }
 
-interface SecretariaActionsProps {
+interface OrgaoActionsProps {
   prefeituraId: string
-  secretarias: Secretaria[]
+  orgaos: Orgao[]
+  onDataChange: () => void
 }
 
-export function SecretariaActions({ prefeituraId, secretarias: initialSecretarias }: SecretariaActionsProps) {
+export function OrgaoActions({ prefeituraId, orgaos: initialOrgaos, onDataChange }: OrgaoActionsProps) {
   const [isAddDialogOpen, setIsAddDialogOpen] = useState(false)
   const [isEditDialogOpen, setIsEditDialogOpen] = useState(false)
-  const [selectedSecretaria, setSelectedSecretaria] = useState<Secretaria | null>(null)
+  const [selectedOrgao, setSelectedOrgao] = useState<Orgao | null>(null)
 
-  const handleAddSubmit = async (values: { nome: string }) => {
-    const result = await addSecretaria(prefeituraId, values)
+  const handleAddSubmit = async (values: { nome: string, orgao_superior_id?: string }) => {
+    const result = await addOrgao(prefeituraId, values)
     if (!result.error) {
+      onDataChange()
       setIsAddDialogOpen(false)
-      alert("Secretaria adicionada com sucesso!")
     } else {
       alert(result.error)
     }
   }
 
-  const handleUpdateSubmit = async (values: { nome: string }) => {
-    if (!selectedSecretaria) return
-    const result = await updateSecretaria(selectedSecretaria.id, prefeituraId, values)
+  const handleUpdateSubmit = async (values: { nome: string, orgao_superior_id?: string }) => {
+    if (!selectedOrgao) return
+    const result = await updateOrgao(selectedOrgao.id, prefeituraId, values)
     if (!result.error) {
+      onDataChange()
       setIsEditDialogOpen(false)
-      setSelectedSecretaria(null)
-      alert("Secretaria atualizada com sucesso!")
+      setSelectedOrgao(null)
     } else {
       alert(result.error)
     }
   }
 
-  const handleDelete = async (secretariaId: string) => {
-    const result = await deleteSecretaria(secretariaId, prefeituraId)
+  const handleDelete = async (orgaoId: string) => {
+    const result = await deleteOrgao(orgaoId, prefeituraId)
     if (result.error) {
       alert(result.error)
     } else {
-      alert("Secretaria excluída com sucesso!")
+      onDataChange()
     }
   }
 
   return (
     <Card className="mt-6">
       <CardHeader className="flex flex-row items-center justify-between">
-        <CardTitle>Secretarias</CardTitle>
+        <CardTitle>Órgãos</CardTitle>
         <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
           <DialogTrigger asChild>
             <Button size="sm">
               <PlusCircle className="mr-2 h-4 w-4" />
-              Adicionar Secretaria
+              Adicionar Órgão
             </Button>
           </DialogTrigger>
           <DialogContent>
             <DialogHeader>
-              <DialogTitle>Adicionar Nova Secretaria</DialogTitle>
+              <DialogTitle>Adicionar Novo Órgão</DialogTitle>
             </DialogHeader>
-            <SecretariaForm onSubmit={handleAddSubmit} />
+            <OrgaoForm 
+              onSubmit={handleAddSubmit} 
+              orgaos={initialOrgaos} 
+            />
           </DialogContent>
         </Dialog>
       </CardHeader>
       <CardContent>
-        {initialSecretarias.length > 0 ? (
+        {initialOrgaos.length > 0 ? (
           <Table>
             <TableHeader>
               <TableRow>
                 <TableHead>Nome</TableHead>
+                <TableHead>Órgão Superior</TableHead>
                 <TableHead className="text-right">Ações</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
-              {initialSecretarias.map((secretaria) => (
-                <TableRow key={secretaria.id}>
-                  <TableCell>{secretaria.nome}</TableCell>
+              {initialOrgaos.map((orgao) => (
+                <TableRow key={orgao.id}>
+                  <TableCell>{orgao.nome}</TableCell>
+                  <TableCell>{orgao.orgaos?.nome || 'N/A'}</TableCell>
                   <TableCell className="text-right space-x-2">
-                    <Dialog open={isEditDialogOpen && selectedSecretaria?.id === secretaria.id} onOpenChange={(isOpen) => {
-                      if (!isOpen) setSelectedSecretaria(null);
+                    <Dialog open={isEditDialogOpen && selectedOrgao?.id === orgao.id} onOpenChange={(isOpen) => {
+                      if (!isOpen) setSelectedOrgao(null);
                       setIsEditDialogOpen(isOpen);
                     }}>
                       <DialogTrigger asChild>
-                        <Button variant="outline" size="icon" onClick={() => setSelectedSecretaria(secretaria)}>
+                        <Button variant="outline" size="icon" onClick={() => setSelectedOrgao(orgao)}>
                           <FilePenLine className="h-4 w-4" />
                         </Button>
                       </DialogTrigger>
                       <DialogContent>
                         <DialogHeader>
-                          <DialogTitle>Editar Secretaria</DialogTitle>
+                          <DialogTitle>Editar Órgão</DialogTitle>
                         </DialogHeader>
-                        <SecretariaForm onSubmit={handleUpdateSubmit} defaultValues={{ nome: secretaria.nome }} />
+                        <OrgaoForm 
+                          onSubmit={handleUpdateSubmit} 
+                          defaultValues={{ nome: orgao.nome, orgao_superior_id: orgao.orgao_superior_id || undefined }} 
+                          orgaos={initialOrgaos}
+                          currentOrgaoId={orgao.id}
+                        />
                       </DialogContent>
                     </Dialog>
                     <AlertDialog>
@@ -145,12 +160,12 @@ export function SecretariaActions({ prefeituraId, secretarias: initialSecretaria
                         <AlertDialogHeader>
                           <AlertDialogTitle>Confirmar Exclusão</AlertDialogTitle>
                           <AlertDialogDescription>
-                            {`Tem certeza que deseja excluir a secretaria '${secretaria.nome}'? Esta ação não pode ser desfeita.`}
+                            {`Tem certeza que deseja excluir o órgão '${orgao.nome}'? Esta ação não pode ser desfeita.`}
                           </AlertDialogDescription>
                         </AlertDialogHeader>
                         <AlertDialogFooter>
                           <AlertDialogCancel>Cancelar</AlertDialogCancel>
-                          <AlertDialogAction onClick={() => handleDelete(secretaria.id)}>
+                          <AlertDialogAction onClick={() => handleDelete(orgao.id)}>
                             Excluir
                           </AlertDialogAction>
                         </AlertDialogFooter>
@@ -162,8 +177,8 @@ export function SecretariaActions({ prefeituraId, secretarias: initialSecretaria
             </TableBody>
           </Table>
         ) : (
-          <p className="text-fg-muted text-center py-4">
-            Nenhuma secretaria cadastrada para esta prefeitura.
+          <p className="text-muted-foreground text-center py-4">
+            Nenhum órgão cadastrado para esta prefeitura.
           </p>
         )}
       </CardContent>

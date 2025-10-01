@@ -75,14 +75,14 @@ export default function SignupPage() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen p-4">
       <div className="w-full max-w-sm text-center mb-8">
-        <h1 className="text-2xl font-bold text-fg-strong">Farol</h1>
+        <h1 className="text-2xl font-bold">Farol</h1>
       </div>
-      <Card className="w-full max-w-sm shadow-s2">
+      <Card className="w-full max-w-sm">
         <CardHeader>
-          <CardTitle className="text-xl font-bold text-fg-strong">
+          <CardTitle className="text-xl font-bold">
             {formResult?.success ? "Cadastro Realizado!" : "Cadastro"}
           </CardTitle>
-          <CardDescription className="text-fg-muted">
+          <CardDescription>
             {formResult?.success 
               ? "Siga as instruções enviadas para o seu e-mail." 
               : "Crie sua conta para acessar a plataforma"}
@@ -91,8 +91,8 @@ export default function SignupPage() {
         <CardContent>
           {formResult?.success ? (
             <div className="text-center">
-              <p className="mb-4 text-fg">{formResult.message}</p>
-              <Button asChild className="h-11">
+              <p className="mb-4">{formResult.message}</p>
+              <Button asChild>
                 <Link href="/login">Ir para o Login</Link>
               </Button>
             </div>
@@ -101,7 +101,7 @@ export default function SignupPage() {
               <form onSubmit={handleSubmit} className="grid gap-4">
                 <div className="grid gap-2">
                   <Label htmlFor="nome">Nome completo</Label>
-                  <Input id="nome" name="nome" placeholder="Seu Nome" required className="h-11" />
+                  <Input id="nome" name="nome" placeholder="Seu Nome" required />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="cpf">CPF</Label>
@@ -115,7 +115,6 @@ export default function SignupPage() {
                     name="cpf"
                     placeholder="000.000.000-00"
                     required
-                    className="h-11"
                   />
                   {cpfError && <p className="text-sm font-medium text-destructive">{cpfError}</p>}
                 </div>
@@ -127,25 +126,24 @@ export default function SignupPage() {
                     type="email"
                     placeholder="m@example.com"
                     required
-                    className="h-11"
                   />
                 </div>
                 <div className="grid gap-2">
                   <Label htmlFor="password">Senha</Label>
-                  <Input id="password" name="password" type="password" required className="h-11" />
+                  <Input id="password" name="password" type="password" required />
                 </div>
                 {formResult && !formResult.success && (
                   <p className="text-sm font-medium text-destructive">
                     {formResult.message}
                   </p>
                 )}
-                <Button type="submit" className="w-full h-11" disabled={isPending || !!cpfError}>
+                <Button type="submit" className="w-full" disabled={isPending || !!cpfError}>
                   {isPending ? "Cadastrando..." : "Criar conta"}
                 </Button>
               </form>
               <div className="mt-4 text-center text-sm">
-                <span className="text-fg-muted">Já tem uma conta?</span>{" "}
-                <Link href="/login" className="underline text-fg-strong font-semibold">
+                <span className="text-muted-foreground">Já tem uma conta?</span>{" "}
+                <Link href="/login" className="underline font-semibold">
                   Entrar
                 </Link>
               </div>

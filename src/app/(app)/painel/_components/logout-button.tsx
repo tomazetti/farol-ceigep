@@ -3,9 +3,14 @@
 import { Button } from "@/components/ui/button";
 import { logout } from "../actions";
 import { useTransition } from "react";
-import { LogOut } from "lucide-react";
+import { LogOut, Loader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
 
-export function LogoutButton() {
+interface LogoutButtonProps {
+  isCollapsed?: boolean;
+}
+
+export function LogoutButton({ isCollapsed = false }: LogoutButtonProps) {
   const [isPending, startTransition] = useTransition();
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -17,13 +22,19 @@ export function LogoutButton() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <Button type="submit" variant="ghost" size="icon" disabled={isPending} aria-label="Sair">
+      <Button 
+        type="submit" 
+        variant="ghost" 
+        disabled={isPending} 
+        className={cn("w-full justify-start", isCollapsed && "justify-center px-0")}
+        aria-label="Sair"
+      >
         {isPending ? (
-          <span className="animate-spin h-4 w-4 border-2 border-current border-t-transparent rounded-full" />
+          <Loader2 className={cn("animate-spin", isCollapsed ? "h-6 w-6" : "h-5 w-5")} />
         ) : (
-          <LogOut className="h-4 w-4" />
+          <LogOut className={cn(isCollapsed ? "h-6 w-6" : "h-5 w-5")} />
         )}
-        <span className="sr-only">Sair</span>
+        <span className={cn("ml-2", isCollapsed && "hidden")}>Sair</span>
       </Button>
     </form>
   );
