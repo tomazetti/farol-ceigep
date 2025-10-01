@@ -1,27 +1,31 @@
-import { createBrowserClient, createServerClient, type CookieOptions } from '@supabase/ssr'
+import { createBrowserClient } from '@supabase/ssr'
+import { createServerClient as _createServerClient, type CookieOptions } from '@supabase/ssr'
 import { cookies } from 'next/headers'
+import { Database } from '@/types/supabase'
 
-export const createClient = (cookieStore: ReturnType<typeof cookies>) => {
-  return createServerClient(
+export const createBrowserClientClient = createBrowserClient<Database>
+
+export function createClient(cookieStore: ReturnType<typeof cookies>) {
+  return _createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!,
     {
       cookies: {
-        get(name: string) {
-          return cookieStore.get(name)?.value
+        async get(name: string) {
+          return (await cookieStore).get(name)?.value
         },
-        set(name: string, value: string, options: CookieOptions) {
+        async set(name: string, value: string, options: CookieOptions) {
           try {
-            cookieStore.set({ name, value, ...options })
+            (await cookieStore).set({ name, value, ...options })
           } catch (error) {
             // The `set` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
             // user sessions.
           }
         },
-        remove(name: string, options: CookieOptions) {
+        async remove(name: string, options: CookieOptions) {
           try {
-            cookieStore.set({ name, value: '', ...options })
+            (await cookieStore).set({ name, value: '', ...options })
           } catch (error) {
             // The `delete` method was called from a Server Component.
             // This can be ignored if you have middleware refreshing
@@ -35,34 +39,19 @@ export const createClient = (cookieStore: ReturnType<typeof cookies>) => {
 
 export const createServiceRoleClient = () => {
   if (!process.env.SUPABASE_SERVICE_ROLE_KEY) {
-    throw new Error('SUPABASE_SERVICE_ROLE_KEY is not set in .env.local')
+    throw new Error('Missing env.SUPABASE_SERVICE_ROLE_KEY. The Service Role Key is required for server-side operations.')
   }
-  
-  // O Service Role Client não precisa de cookies, mas a biblioteca exige
-  // que as funções de manipulação de cookies sejam fornecidas.
-  // Fornecemos funções vazias para satisfazer esse requisito.
-  return createServerClient(
+  return _createServerClient<Database>(
     process.env.NEXT_PUBLIC_SUPABASE_URL!,
     process.env.SUPABASE_SERVICE_ROLE_KEY!,
     {
       cookies: {
         get() {
-          return undefined;
+          return undefined
         },
-        set() {
-          // No-op
-        },
-        remove() {
-          // No-op
-        },
+        set() {},
+        remove() {},
       },
     }
   )
-}
-
-export const createBrowserClientClient = () => {
-    return createBrowserClient(
-        process.env.NEXT_PUBLIC_SUPABASE_URL!,
-        process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
-    )
 }

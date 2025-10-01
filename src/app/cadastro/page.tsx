@@ -32,7 +32,10 @@ export default function SignupPage() {
   const [cpf, setCpf] = useState('');
   const [cpfError, setCpfError] = useState<string | null>(null);
   const [formResult, setFormResult] = useState<{ success: boolean; message: string } | null>(null);
-  const supabase = createBrowserClientClient();
+  const supabase = createBrowserClientClient(
+    process.env.NEXT_PUBLIC_SUPABASE_URL!,
+    process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
+  );
 
   const handleCpfBlur = async () => {
     const cleanedCpf = cpf.replace(/\D/g, '');
